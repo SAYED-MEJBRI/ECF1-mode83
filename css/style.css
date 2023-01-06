@@ -1,0 +1,412 @@
+/* importer les css fournis */
+@import "fonts.css";
+@import "fontello.css";
+@import url(https://fonts.googleapis.com/css?family=Raleway);
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/*  declaration des variables de couleur et de taille*/
+:root {
+  --theme1: #0389be;
+  --theme2: #ffffff;
+  --titre-size1: 64px;
+  --titre-size2: 24px;
+
+}
+
+/*  max-width à 1760px */
+.mw {
+  max-width: 1475px;
+  margin: auto;
+}
+/* padding de 32px  */
+.p-32 {
+  padding: 32px;
+}
+
+/* En-tête de page style et positionnement*/
+.menu {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu>li {
+  margin: 0 1rem;
+  overflow: hidden;
+}
+
+.menu-button-container {
+  display: none;
+  height: 100%;
+  width: 30px;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+.menu-button,
+.menu-button::before,
+.menu-button::after {
+  display: block;
+  background-color: #fff;
+  position: absolute;
+  height: 4px;
+  width: 30px;
+  transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  border-radius: 2px;
+}
+
+.menu-button::before {
+  content: '';
+  margin-top: -8px;
+}
+
+.menu-button::after {
+  content: '';
+  margin-top: 8px;
+}
+
+#menu-toggle:checked+.menu-button-container .menu-button::before {
+  margin-top: 0px;
+  transform: rotate(405deg);
+}
+
+#menu-toggle:checked+.menu-button-container .menu-button {
+  background: rgba(255, 255, 255, 0);
+}
+
+#menu-toggle:checked+.menu-button-container .menu-button::after {
+  margin-top: 0px;
+  transform: rotate(-405deg);
+}
+
+@media (max-width: 700px) {
+  .menu-button-container {
+    display: flex;
+  }
+
+  .menu {
+    position: absolute;
+    top: 0;
+    margin-top: 50px;
+    left: 0;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #menu-toggle~.menu li {
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  #menu-toggle:checked~.menu li {
+    border: 1px solid #333;
+    height: 2.5em;
+    padding: 0.5em;
+    transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .menu>li {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0.5em 0;
+    width: 100%;
+    color: white;
+    background-color: #222;
+  }
+
+  .menu>li:not(:last-child) {
+    border-bottom: 1px solid #444;
+  }
+}
+
+header {
+
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: var(--theme1);
+  color: var(--theme2);
+
+}
+
+header a {
+  text-decoration: none;
+  color: var(--theme2);
+}
+
+/* section 1 */
+h1 {
+  font-size: var(--titre-size1);
+  
+}
+/*  section 1 positionnement du bloc au cente à l'aide du flex 
+*ajouter une image en arrière plan
+*min-height 620px*/
+.section_1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../images/banner.png);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: var(--theme2);
+  text-align: center;
+  min-height: 620px;
+}
+
+
+/* section 2 deux arrière-plans superposés pour ... */
+.section_2 {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.9),
+  rgba(255, 255, 255, 0.9)), url(../images/bg.jpg);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+}
+  /* Donner la propriété flex avec justify-content: center, align-item:center et text-align: center pour centrer le boc dans son conteneur verticalement et horizontalement */
+.part_1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+}
+/* Changer le couleur de h2 avec le la couleur enregistrer dans --theme1 */
+.part_1 h2 {
+  color: var(--theme1);
+}
+/*  avec la propriété grid positionné les articles dans part_2 sur 3 colonnes avec un min-widht 340px et une goutière de 40 px */
+/* article{
+  width: 500px  ;
+} */
+.part_2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 40px;
+
+}
+
+/* Appliquée un box-shadow sur l'article et donner la couleur blanc enregistrer das la variable --theme2  */
+
+article {
+
+  border-radius: 5px;
+  padding: 16px;
+  box-shadow: 1px 1px 1px 1px rgb(0, 0, 0, 20%);
+  padding: 16px;
+  text-align: center;
+  background-color: var(--theme2);
+
+}
+/* Donner la couleur enregistrer dans la variable --theme1 pour les titres h3 dans les articles */
+article h3 {
+  color: var(--theme1);
+}
+
+/* section 3 appliqué une superpotion de deux arrière-plans une image et une dégradation de couleur bleu pour avoir l'arrière plan demandé*/
+.section_3 {
+  background-image: linear-gradient(rgba(0, 0, 255, 0.4),
+      rgba(0, 0, 255, 0.4)), url(../images/cta01.jpg);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: var(--theme2);
+  min-height: 480px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/*  Colorer les tous les h3 dans section_3 avec la couleur enregistrer dans la variable --theme2 */
+.section_3 h2 {
+  color: var(--theme2);
+}
+.section_4 {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0.9)), url(../images/bg.jpg);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.part_2_sec4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 20px;
+}
+.bleu {
+  color: var(--theme1);
+}
+/* Appliqué la propriété border-radus: 50% sur les images de la section _3 pour avoir la forme circulaire*/
+.img_profit {
+  border-radius: 50%;
+}
+/* Alignez les blocs dans description verticalement par les propriétés. flex , align-items:center et justify-content:start */
+.description {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.article {
+padding-top: 32px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px 1px rgb(0, 0, 0, 20%);
+  text-align: center;
+  background-color: var(--theme2);
+margin-bottom: 32px ;
+}
+
+/* Class border-left pour faire une bordure sur le côté doit d'un bloc d'Epesseur 5 px */
+.border-left {
+  border-left: 5px solid gray;
+  padding-left: 10px;
+}
+/*  Donner une coleur d'arrière-plan pour le pied de page ansi un couleur pour le contenu  */
+footer {
+
+  background-color: #222222;
+  color: var(--theme2)
+}
+
+/* Appliquée la propriété grid sur le bloc footer-display pour positionner les blocs horizontalement */
+.footer-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 20px;
+}
+/* Positionner les éléments du formulaire verticalementn à l'aide de la propriéte flex-direction:column */
+.form {
+  display: flex;
+  flex-direction: column;
+
+}
+/* Les éléments dans le formulaire prennent 100% de la taille disponible sauf le bouton */
+input,
+label,
+textarea {
+  width: 100%;
+}
+
+.text-center{
+  text-align: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.icon {
+
+  color: var(--theme1);
+}
+
+.btn {
+  background-color: transparent;
+  color: #ffff;
+  height: 35px;
+  border-radius: 5px;
+  border: 2px solid #ffffff;
+}
+
+.mw-p {
+  max-width: 850px;
+}
+
+.btn2 {
+  display: flex;
+  justify-content: center;
+}
+/* .part_2:nth-child(n-4){
+  background-color: ;
+} */
+.icon {
+  font-size: 64px;
+}
+
+.media {
+  font-size: 20px;
+}
+
+.largeur {
+  border-bottom: 1px solid white;
+}
+
+@media (max-width: 1564px) {
+  .form {
+    grid-column: span 3;
+  }
+}
+
+@media (max-width: 1150px) {
+  .form {
+    grid-column: span 2;
+  }
+
+  .enfant3 {
+    grid-column: span 2;
+    gap: 10px;
+
+  }
+}
+
+@media (max-width: 737px) {
+  .form {
+    grid-column: span 1;
+  }
+
+
+
+  .part_2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 10px;
+
+  }
+
+  .enfant3 {
+    grid-column: span 1;
+    gap: 10px;
+
+  }
+
+  .footer-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  h1,
+  h2 {
+    font-size: var(--titre-size2);
+  }
+
+  .icon {
+    font-size: var(--titre-size2);
+  }
+}
